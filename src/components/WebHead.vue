@@ -5,14 +5,13 @@
 </template>
 
 <script setup>
-import { ref } from "vue";
 const props = defineProps({
-  // 是否显示
+  // 标题
   title: {
     type: String,
     default: "标题",
   },
-});
+})
 </script>
 
 <style lang="scss" scoped>
