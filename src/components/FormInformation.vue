@@ -86,7 +86,7 @@ const info = reactive({
   stutID: "",
   phone: "",
   end: "",
-  carNum: "1",
+  carNum: 1,
   dateTime: "",
   mode: "1",
 })
@@ -100,14 +100,19 @@ const throttle = () => {
   }
   timer = setTimeout(() => {
     checkForm()
-  }, 400)
+  }, 300)
 }
 
 // 检查表单数据是否符合规范
 const checkForm = () => {
   console.log(info)
 
-  if (info.name == "") {
+  if (!info.name || !info.end || !info.carNum || !info.dateTime) {
+    return
+  }
+
+  // 单独校验学号和电话,因为默认是int类型
+  if (info.stutID.length !== 10 || info.phone.length !== 11) {
     return
   }
 }
@@ -123,7 +128,7 @@ const changeMode = (e) => {
   width: 100%;
   //   height: 3rem;
   //   border: .01rem solid;
-  padding: 15px;
+  padding: 0.15rem;
   box-sizing: border-box;
   border-radius: 0.05rem;
   background: #fff;
@@ -131,15 +136,15 @@ const changeMode = (e) => {
   font-size: 0.15rem;
 
   .btn {
-    width: 150px;
-    height: 40px;
+    width: 1.5rem;
+    height: 0.4rem;
     color: #fff;
     background: #0f5bff;
-    line-height: 40px;
+    line-height: 0.4rem;
     text-align: center;
-    border-radius: 5px;
+    border-radius: 0.05rem;
     margin: 0 auto;
-    margin-top: 30px;
+    margin-top: 0.3rem;
   }
 
   .form-item {
@@ -147,19 +152,19 @@ const changeMode = (e) => {
     height: 0.3rem;
     line-height: 0.3rem;
     display: flex;
-    margin-bottom: 10px;
+    margin-bottom: 0.1rem;
 
     .info {
-      margin-right: 10px;
-      min-width: 55px;
+      margin-right: 0.1rem;
+      min-width: 0.55rem;
       font-weight: bold;
     }
 
     .info-input {
-      width: 200px;
-      border: 1px solid #e0e0e0;
-      font-size: 15px;
-      padding: 0 10px;
+      width: 2rem;
+      border: 0.01rem solid #e0e0e0;
+      font-size: 0.15rem;
+      padding: 0 0.1rem;
     }
 
     input:focus {
