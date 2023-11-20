@@ -78,7 +78,7 @@
 </template>
 
 <script setup>
-import { reactive, ref } from "vue"
+import { getCurrentInstance, reactive, ref } from "vue"
 
 // 数据初始化
 const info = reactive({
