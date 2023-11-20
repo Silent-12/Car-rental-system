@@ -73,12 +73,16 @@
       </select>
     </div>
 
-    <div class="btn" @click="throttle()">提交</div>
+    <!-- 提示语 -->
+    <div style="color: #e06c75; text-align: center; font-weight: bold">{{ tips }}</div>
+
+    <!-- 提交按钮 -->
+    <div class="btn" v-if="isshow" @click="throttle()">提交</div>
   </div>
 </template>
 
 <script setup>
-import { getCurrentInstance, reactive, ref } from "vue"
+import { reactive, ref } from "vue"
 
 // 数据初始化
 const info = reactive({
@@ -92,6 +96,8 @@ const info = reactive({
 })
 
 let timer = ref(null)
+let tips = ref(null)
+let isshow = ref(true)
 
 // 按钮节流
 const throttle = () => {
@@ -107,14 +113,40 @@ const throttle = () => {
 const checkForm = () => {
   console.log(info)
 
-  if (!info.name || !info.end || !info.carNum || !info.dateTime) {
+  // 校验基础信息,姓名,目的地,时间不能为空
+  if (!info.name || !info.end || !info.dateTime) {
+    tips.value = "请填写完整信息"
     return
   }
 
-  // 单独校验学号和电话,因为默认是int类型
-  if (info.stutID.length !== 10 || info.phone.length !== 11) {
+  // 校验学号和电话,因为默认是int类型
+  const id = info.stutID + ""
+  const phone = info.phone + ""
+  if (id.length != 10 || phone.length != 11) {
+    tips.value = "学号或电话不符合规则!"
     return
   }
+
+  // 检验车辆数
+  if (info.carNum <= 0 || !info.carNum) {
+    tips.value = "所需车辆数不能为0或空!"
+    return
+  }
+
+  tips.value = ""
+  submitData()
+}
+
+// 提交信息到后端
+const submitData = () => {
+  // 隐藏提交按钮
+  isshow.value = false
+
+  tips.value = "提交成功,请等待审核"
+
+  setTimeout(() => {
+    isshow.value = true
+  }, 2000)
 }
 
 // slect选择回调
