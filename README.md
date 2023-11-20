@@ -1,7 +1,12 @@
-# Vue 3 + Vite
+### 项目介绍
 
-This template should help get you started developing with Vue 3 in Vite. The template uses Vue 3 `<script setup>` SFCs, check out the [script setup docs](https://v3.vuejs.org/api/sfc-script-setup.html#sfc-script-setup) to learn more.
+- 此项目为校园租车用户端，还有管理端，与服务端
+- 主要用于用户提交租车信息。当信息提交到服务端后，服务端会将信息加密返回前端。前端生成租车二维码。管理端扫码验证租车信息
 
-## Recommended IDE Setup
 
-- [VS Code](https://code.visualstudio.com/) + [Volar](https://marketplace.visualstudio.com/items?itemName=Vue.volar) (and disable Vetur) + [TypeScript Vue Plugin (Volar)](https://marketplace.visualstudio.com/items?itemName=Vue.vscode-typescript-vue-plugin).
+
+## 运行
+
+- 开发环境：nodejs 19.9.0
+- 在当前目录下运行 npm i
+- 下载完依赖后运行 npm run dev即可启动
